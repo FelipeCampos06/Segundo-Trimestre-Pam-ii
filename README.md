@@ -27,4 +27,5 @@ install npm
 
 
     git pull origin master --rebase 
-    (dê o push em seguida) 
+    (dê o push em seguida)
+    
