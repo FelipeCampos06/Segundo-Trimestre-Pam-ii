@@ -1,3 +1,5 @@
+#   INICIAR O GITHUB    #
+
 git config --global user.name "FelipeCampos06"
     
 git config --global user.email "felipe.belinati@gmail.com"
