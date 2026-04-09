@@ -43,11 +43,13 @@ e renomeia para .env
 
 deixe assim
 
-## Backend
+##Backend
+
 PORT=3000
 ENCRYPTION_KEY=sua_chave_de_criptografia_aqui_
 
-## DB Config
+##DB Config
+
 DB_HOST=localhost
 DB_PORT=3306
 DB_USERNAME=root
