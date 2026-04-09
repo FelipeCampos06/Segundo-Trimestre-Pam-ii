@@ -72,7 +72,7 @@ cd backend
 
 npm run start:dev
 
-#   Iniciar localhots   #
+#   INICIAR LOCALHOST   #
 
 abra uma nova guia do cmd 
 
