@@ -25,6 +25,10 @@ git pull origin master --rebase
 (dê o push em seguida)
 
 
+abra o cmd
+
+#   BACKEND   #
+
 cd backend
 
 npm install
@@ -52,7 +56,9 @@ DB_DATABASE=quero_cafe_bar
 
 depois iniciar o xamp no mysql
 
-criar um schema e mudar o nome para o databse escrito acima
+abra o MySQL Worckbench
+
+vá em schemas para criar um schema e mudar o nome para o databse escrito acima
 
 e depois de criado abra a pasta backend dnv no cmd
 
@@ -61,6 +67,8 @@ dê o comando
 cd backend
 
 npm run start:dev
+
+#   Iniciar localhots   #
 
 abra uma nova guia do cmd 
 
@@ -71,6 +79,8 @@ curl http://localhost:3000
 digite A
 
 abra um outra gia do cmd
+
+#   FRONTEND    #
 
 cd desktop
 
