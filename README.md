@@ -12,7 +12,7 @@ git add .
 
 git commit -m "data ou titulo do commit"
 
-git remote add origin Link do git
+git remote add origin https://github.com/FelipeCampos06/Segundo-Trimestre-Pam-ii
 
 git branch -M master
 
