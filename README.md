@@ -97,3 +97,21 @@ install npm
 para rodar utilize 
 
 npm run dev
+
+# ANDROID STUDIO #
+
+link de guia
+
+https://ionicframework.com/docs/javascript/quickstart
+
+npm install
+
+npm install @capacitor/core @capacitor/cli @capacitor/ios @capacitor/android
+
+npx cap init
+
+npm run build
+
+npx cap add ios
+
+npx cap add android
