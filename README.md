@@ -112,8 +112,6 @@ npx cap init
 
 npm run build
 
-npx cap add ios
-
 npx cap add android
 
 Após criar o add android use
@@ -121,3 +119,7 @@ Após criar o add android use
 npm run build
 
 npx cap sync android
+
+para rodar
+
+npx cap open android
