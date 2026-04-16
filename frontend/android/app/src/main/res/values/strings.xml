@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">frontend-pamii</string>
+    <string name="title_activity_main">frontend-pamii</string>
+    <string name="package_name">com.example.frontend</string>
+    <string name="custom_url_scheme">com.example.frontend</string>
+</resources>
