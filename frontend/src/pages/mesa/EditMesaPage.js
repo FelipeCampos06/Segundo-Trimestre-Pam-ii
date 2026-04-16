@@ -1,0 +1,46 @@
+import './EditMesaPage.css'
+import { createHeader } from '../../shared/Header.js'
+import { logout } from '../../shared/util.js';
+
+const pageName = 'Editar Mesa';
+
+class EditMesaPage extends HTMLElement {
+    connectedCallback() {
+        this.classList.add('ion-page');
+        const cabecalho = createHeader(pageName);
+        this.innerHTML = `
+            ${cabecalho}
+            <ion-content class="ion-padding">
+                <form id="form-mesa">
+                    <ion-list>
+                        <ion-item>
+                            <p>Mesa</p>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input type="number" step="0.01" name="valor_unit"
+                            label="Quantidade de cadeiras" label-placement="floating" value="5" required>
+                            </ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Ativo</ion-label>
+                            <ion-toggle slot="end" name="status" checked></ion-toggle>
+                        </ion-item>
+                    </ion-list>
+                    <div class="ion-padding">
+                        <ion-button expand="block" type="submit" class="ion-margin-top">
+                        Salvar Mesa
+                        </ion-button>
+                        <ion-button expand="block" color="danger" id="btn-cancelar">
+                        Cancelar
+                        </ion-button>
+                    </div>
+                </form>
+            </ion-content>
+        `;
+        this.querySelector('#logout-btn')
+        .addEventListener('click', logout);
+        this.querySelector('#btn-cancelar').addEventListener('click', () =>  windows.history.back());
+    }
+}
+
+customElements.define('edit-mesa-page', EditMesaPage);
