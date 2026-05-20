@@ -1,8 +1,6 @@
 ---
 description: Revise alterações recentes
-agent : plan
-
-
+agent: plan
 ---
 
 Commits recentes do git:

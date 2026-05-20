@@ -14,16 +14,14 @@ class EditMesaPage extends HTMLElement {
                 <form id="form-mesa">
                     <ion-list>
                         <ion-item>
-                            <p>Mesa</p>
-                        </ion-item>
-                        <ion-item>
-                            <ion-input type="number" step="0.01" name="valor_unit"
-                            label="Quantidade de cadeiras" label-placement="floating" value="5" required>
+                            <ion-input type="number" name="id"
+                            label="Número da Mesa" label-placement="floating" value="1" required>
                             </ion-input>
                         </ion-item>
                         <ion-item>
-                            <ion-label>Ativo</ion-label>
-                            <ion-toggle slot="end" name="status" checked></ion-toggle>
+                            <ion-input type="number" name="qtd_cadeiras"
+                            label="Quantidade de Cadeiras" label-placement="floating" value="4" required>
+                            </ion-input>
                         </ion-item>
                     </ion-list>
                     <div class="ion-padding">
@@ -39,7 +37,7 @@ class EditMesaPage extends HTMLElement {
         `;
         this.querySelector('#logout-btn')
         .addEventListener('click', logout);
-        this.querySelector('#btn-cancelar').addEventListener('click', () =>  windows.history.back());
+        this.querySelector('#btn-cancelar').addEventListener('click', () => windows.history.back());
     }
 }
 

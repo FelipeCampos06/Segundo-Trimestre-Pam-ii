@@ -15,12 +15,9 @@ class ListMesaPage extends HTMLElement {
             </ion-content>
         `;
         this.querySelector('#logout-btn')
-            .addEventListener('click', logout);
+        .addEventListener('click', logout);
 
-        // buscando os mesas
         const mesas = this.fetchMesas() || [];
-
-        // renderizando os mesas no HTML
         this.renderMesas(mesas);
     }
 
@@ -28,17 +25,15 @@ class ListMesaPage extends HTMLElement {
         return [
             {
                 "id": 1,
-                "qtd_cadeiras": 5,
+                "qtd_cadeiras": 4
             },
             {
                 "id": 2,
-                "qtd_cadeiras": 10,
- 
+                "qtd_cadeiras": 6
             },
             {
                 "id": 3,
-                "qtd_cadeiras": 15,
-
+                "qtd_cadeiras": 2
             }
         ]
     }
@@ -46,25 +41,18 @@ class ListMesaPage extends HTMLElement {
     renderMesas(mesas) {
         const container = this.querySelector(".list-mesa");
 
-        // SE mesa VAZIO, MOSTRAR MENSAGEM AO USUÁRIO
         if (mesas.length === 0) {
-            container.innerHTML = '<p> Nenhum mesa encontrado </p>'
+            container.innerHTML = '<p> Nenhuma mesa encontrada </p>'
             return;
         }
 
         const mesaItems = mesas.map(mesa => `
             <ion-item>
                 <ion-label>
-                    <h2 style="display: flex; align-items: center; gap: 8px;">
-                        <ion-icon
-                            name = "restaurant-outline"
-                            style = "font-size : 24px"
-                        ></ion-icon>
-                        <span>Mesa ${mesa.id}</span>
-                    </h2>
+                    <h2>Mesa ${mesa.id}</h2>
+                    <p>${mesa.qtd_cadeiras} cadeiras</p>
                 </ion-label>
-                            <span>${mesa.qtd_cadeiras} Cadeiras</span>
-                            
+
                 <ion-buttons slot="end">
                     <ion-button fill="clear" class="btn-edit" data-id="${mesa.id}">
                         <ion-icon slot="icon-only" name="create-outline"></ion-icon>
@@ -77,7 +65,6 @@ class ListMesaPage extends HTMLElement {
 
         container.innerHTML = `<ion-list>${mesaItems}</ion-list>`;
     }
-
 }
 
 customElements.define('list-mesa-page', ListMesaPage);

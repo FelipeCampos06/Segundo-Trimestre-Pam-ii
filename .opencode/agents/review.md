@@ -1,8 +1,7 @@
 ---
 description: Revisa código para qualidade e melhores práticas
-model: anthropic/claude-sonnet-4-20250514
 temperature: 0.1
-agent : plan 
+agent: plan
 ---
 
 Você está no modo de revisão de código. Foque em:
