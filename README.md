@@ -1,4 +1,7 @@
 #   INICIAR O GITHUB    #
+cd desktop
+
+git clone https://github.com/FelipeCampos06/Segundo-Trimestre-Pam-ii
 
 git config --global user.name "FelipeCampos06"
     
@@ -6,15 +9,11 @@ git config --global user.email "felipe.belinati@gmail.com"
 
 abra o cmd
 
-#   BACKEND   #
+#   BACKEND  .env  #
 
 cd backend
 
 npm install
-
-cd..
-
-code .
 
 copia o .env.example
 
@@ -39,41 +38,33 @@ depois iniciar o xamp no mysql
 
 abra o MySQL Worckbench
 
-vá em schemas para criar um schema e mudar o nome para o databse escrito acima
-
-e depois de criado abra a pasta backend dnv no cmd
-
-dê o comando 
+em seguida 
 
 cd backend
 
+npm run migrate
+
 npm run start:dev
-
-#   INICIAR LOCALHOST   #
-
-abra uma nova guia do cmd 
-
-digite
-
-curl http://localhost:3000
-
-digite A
-
-abra um outra gia do cmd
 
 #   FRONTEND    #
 
-cd desktop
-
-cd frontend-pamii
+cd..
 
 cd frontend
 
-install npm
+cd frontend
 
-para rodar utilize 
+npm install 
 
 npm run dev
+
+http://localhost:5173
+
+#   INSTALAR OPENCODE   #
+
+ npm install -g opencode-ai
+
+ opencode
 
 # ANDROID STUDIO #
 
