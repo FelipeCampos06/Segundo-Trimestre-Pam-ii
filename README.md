@@ -24,7 +24,7 @@ deixe assim
 ##Backend
 
 PORT=3000
-ENCRYPTION_KEY=sua_chave_de_criptografia_aqui_
+ENCRYPTION_KEY=sua_chave_de_criptografia_aqui_1
 
 ##DB Config
 
