@@ -21,15 +21,18 @@ const createAndInjectionMenu = () => {
         </ion-header>
         <ion-content>
             <ion-list>
-                <ion-item button class="menu-item" data-url="/home">
-                    <ion-label>Home</ion-label>
-                </ion-item>
-                <ion-item button class="menu-item" data-url="/produto/list">
-                    <ion-label>Produtos</ion-label>
-                </ion-item>
-                <ion-item button class="menu-item" data-url="/usuario/list">
-                    <ion-label>Usuários</ion-label>
-                </ion-item>
+                 <ion-item button class="menu-item" data-url="/home">
+                     <ion-label>Home</ion-label>
+                 </ion-item>
+                 <ion-item button class="menu-item" data-url="/comanda">
+                     <ion-label>Comanda</ion-label>
+                 </ion-item>
+                 <ion-item button class="menu-item" data-url="/produto/list">
+                     <ion-label>Produtos</ion-label>
+                 </ion-item>
+                 <ion-item button class="menu-item" data-url="/usuario/list">
+                     <ion-label>Usuários</ion-label>
+                 </ion-item>
             </ion-list>
         </ion-content>
     `;

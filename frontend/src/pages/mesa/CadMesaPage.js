@@ -37,7 +37,7 @@ class CadMesaPage extends HTMLElement {
         `;
         this.querySelector('#logout-btn')
         .addEventListener('click', logout);
-        this.querySelector('#btn-cancelar').addEventListener('click', () => windows.history.back());
+        this.querySelector('#btn-cancelar').addEventListener('click', () => window.history.back());
     }
 }
 

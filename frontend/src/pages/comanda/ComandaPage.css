@@ -1,0 +1,19 @@
+.comanda-info {
+    background: var(--ion-color-light);
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1em;
+}
+
+.comanda-info p {
+    margin: 0;
+}
+
+#available-products {
+    margin-top: 24px;
+    border-top: 1px solid var(--ion-color-medium);
+}

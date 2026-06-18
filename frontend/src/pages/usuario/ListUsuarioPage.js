@@ -1,6 +1,8 @@
 import './ListUsuarioPage.css'
 import { createHeader } from '../../shared/Header.js'
+import { createFooter } from '../../shared/Footer.js'
 import { logout } from '../../shared/util.js'; 
+import { api } from '../../shared/api.js'
 
 const pageName = 'Usuário';
 
@@ -11,49 +13,48 @@ class ListUsuarioPage extends HTMLElement {
         this.innerHTML = `
             ${cabecalho}
             <ion-content>
+                <div class="ion-padding">
+                    <ion-button expand="block" id="btn-add-usuario">
+                        <ion-icon slot="start" name="add"></ion-icon>
+                        Novo Usuário
+                    </ion-button>
+                </div>
                 <div class="list-usuario"></div>
             </ion-content>
+            ${createFooter()}
         `;
-        this.querySelector('#logout-btn')
-        .addEventListener('click', logout);
-
-         // buscando os usuarios
-        const usuarios = this.fetchUsuarios() || [];
         
-        // renderizando os usuarios no HTML
-        this.renderUsuarios(usuarios);
+        this.querySelector('#btn-add-usuario').addEventListener('click', () => {
+            document.querySelector('ion-router').push('/usuario/create', 'forward');
+        });
+
+        this.querySelector('#btn-back-footer').addEventListener('click', () => {
+            document.querySelector('ion-router').push('/home', 'root');
+        });
+
+        this.loadUsuarios();
+        // Atualização automática a cada 1 segundo
+        this.refreshInterval = setInterval(() => this.loadUsuarios(), 1000);
     }
 
-    fetchUsuarios() {
-        return [
-            {
-                "id": 1,
-                "nome": "Diego Pires",
-                "usuario": "diego.pires",
-                "senha": "123abc@",
-                "perfil": 1
-            },
-            {
-                "id": 2,
-                "nome": "João da Couves",
-                "usuario": "joao.couve",
-                "senha": "123abc@",
-                "perfil": 0
-            },
-            {
-                "id": 3,
-                "nome": "Fulano da Silva",
-                "usuario": "fulano.silva",
-                "senha": "123abc@",
-                "perfil": 0
-            }
-        ]
+    disconnectedCallback() {
+        clearInterval(this.refreshInterval);
+    }
+
+    async loadUsuarios() {
+        try {
+            const usuarios = await api.get('/usuario');
+            // Organiza por nome em ordem alfabética
+            usuarios.sort((a, b) => a.nome.localeCompare(b.nome));
+            this.renderUsuarios(usuarios);
+        } catch (error) {
+            console.error('Erro ao carregar usuários:', error);
+        }
     }
 
     renderUsuarios(usuarios) {
         const container = this.querySelector(".list-usuario");
 
-        // SE USUARIO VAZIO, MOSTRAR MENSAGEM AO USUÁRIO
         if (usuarios.length === 0) {
             container.innerHTML = '<p> Nenhum usuario encontrado </p>'
             return;
@@ -85,6 +86,29 @@ class ListUsuarioPage extends HTMLElement {
             `).join('');
     
         container.innerHTML = `<ion-list>${usuarioItems}</ion-list>`;
+
+        // Eventos de Edição
+        this.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', () => {
+                localStorage.setItem('edit_usuario_id', btn.dataset.id);
+                document.querySelector('ion-router').push('/usuario/edit', 'forward');
+            });
+        });
+
+        // Eventos de Exclusão
+        this.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const id = btn.dataset.id;
+                if (confirm('Deseja realmente excluir este usuário?')) {
+                    try {
+                        await api.delete(`/usuario/${id}`);
+                        this.loadUsuarios();
+                    } catch (error) {
+                        alert('Erro ao excluir usuário');
+                    }
+                }
+            });
+        });
     }
 }
 

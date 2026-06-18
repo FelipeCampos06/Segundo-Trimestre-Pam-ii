@@ -7,7 +7,12 @@ describe('UsuarioController', () => {
   let controller: UsuarioController;
 
   beforeEach(async () => {
-    const mockResponse = { id: 1, usuario: 'testeuser', senha: '123', perfil: 1 };
+    const mockResponse = {
+      id: 1,
+      usuario: 'testeuser',
+      senha: '123',
+      perfil: 1,
+    };
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UsuarioController],
       providers: [
@@ -21,10 +26,10 @@ describe('UsuarioController', () => {
             findAll: jest.fn(),
             findByUsuario: jest.fn().mockResolvedValue(mockResponse),
             findByPerfil: jest.fn().mockResolvedValue(mockResponse),
-            login: jest.fn().mockResolvedValue(mockResponse)
+            login: jest.fn().mockResolvedValue(mockResponse),
           },
         },
-      ],    
+      ],
     }).compile();
 
     controller = module.get<UsuarioController>(UsuarioController);
@@ -64,7 +69,13 @@ describe('UsuarioController', () => {
 
   describe('findOne', () => {
     it('should return a single usuario', async () => {
-      const result = { id: 1, nome: 'Teste', usuario: 'testeuser', senha: '123', perfil: 1 };
+      const result = {
+        id: 1,
+        nome: 'Teste',
+        usuario: 'testeuser',
+        senha: '123',
+        perfil: 1,
+      };
 
       jest.spyOn(controller, 'findOne').mockImplementation(async () => result);
 
@@ -74,9 +85,17 @@ describe('UsuarioController', () => {
 
   describe('findByUsuario', () => {
     it('should return a usuario by username', async () => {
-      const result = { id: 1, nome: 'Teste', usuario: 'testeuser', senha: '123', perfil: 1 };
+      const result = {
+        id: 1,
+        nome: 'Teste',
+        usuario: 'testeuser',
+        senha: '123',
+        perfil: 1,
+      };
 
-      jest.spyOn(controller, 'findByUsuario').mockImplementation(async () => result);
+      jest
+        .spyOn(controller, 'findByUsuario')
+        .mockImplementation(async () => result);
 
       expect(await controller.findByUsuario('testeuser')).toBe(result);
     });
@@ -84,9 +103,17 @@ describe('UsuarioController', () => {
 
   describe('findByPerfil', () => {
     it('should return a usuario by perfil', async () => {
-      const result = { id: 1, nome: 'Teste', usuario: 'testeuser', senha: '123', perfil: 1 };
+      const result = {
+        id: 1,
+        nome: 'Teste',
+        usuario: 'testeuser',
+        senha: '123',
+        perfil: 1,
+      };
 
-      jest.spyOn(controller, 'findByPerfil').mockImplementation(async () => result);
+      jest
+        .spyOn(controller, 'findByPerfil')
+        .mockImplementation(async () => result);
 
       expect(await controller.findByPerfil(1)).toBe(result);
     });
@@ -94,7 +121,13 @@ describe('UsuarioController', () => {
 
   describe('login', () => {
     it('should return a usuario by login', async () => {
-      const result = { id: 1, nome: 'Teste', usuario: 'testeuser', senha: '123', perfil: 1 };
+      const result = {
+        id: 1,
+        nome: 'Teste',
+        usuario: 'testeuser',
+        senha: '123',
+        perfil: 1,
+      };
 
       jest.spyOn(controller, 'login').mockImplementation(async () => result);
 
@@ -105,7 +138,13 @@ describe('UsuarioController', () => {
   describe('update', () => {
     it('should update a usuario', async () => {
       const updateUsuarioDto = { id: 1, nome: 'Teste Alterado' };
-      const result = { id: 1, nome: 'Teste Alterado', usuario: 'testeuser', senha: '123', perfil: 1 };
+      const result = {
+        id: 1,
+        nome: 'Teste Alterado',
+        usuario: 'testeuser',
+        senha: '123',
+        perfil: 1,
+      };
 
       jest.spyOn(controller, 'update').mockImplementation(async () => result);
 

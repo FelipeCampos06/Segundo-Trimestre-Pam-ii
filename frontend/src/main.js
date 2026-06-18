@@ -39,6 +39,9 @@ import './pages/mesa/ListMesaPage.js';
 import './pages/mesa/CadMesaPage.js';
 import './pages/mesa/EditMesaPage.js';
 
+// COMANDA
+import './pages/comanda/ComandaPage.js';
+
 import './pages/usuario/ListUsuarioPage.js';
 import './pages/usuario/CadUsuarioPage.js';
 import './pages/usuario/EditUsuarioPage.js';

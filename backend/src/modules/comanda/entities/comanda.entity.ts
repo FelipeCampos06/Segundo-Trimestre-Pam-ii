@@ -1,5 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+  OneToMany,
+} from 'typeorm';
 import { Mesa } from '../../mesa/entities/mesa.entity';
+import { Usuario } from '../../usuario/entities/usuario.entity';
 import { ComandaItem } from '../../comanda-item/entities/comanda-item.entity';
 
 @Entity('comandas')
@@ -10,6 +18,9 @@ export class Comanda {
   @Column({ type: 'int' })
   id_mesa: number;
 
+  @Column({ type: 'int', nullable: true })
+  id_usuario: number;
+
   @Column({ type: 'varchar', length: 100, nullable: true })
   obs_comanda: string;
 
@@ -17,6 +28,12 @@ export class Comanda {
   @JoinColumn({ name: 'id_mesa' })
   mesa: Mesa;
 
-  @OneToMany(() => ComandaItem, (comandaItem) => comandaItem.comanda, { cascade: true })
+  @ManyToOne(() => Usuario)
+  @JoinColumn({ name: 'id_usuario' })
+  usuario: Usuario;
+
+  @OneToMany(() => ComandaItem, (comandaItem) => comandaItem.comanda, {
+    cascade: true,
+  })
   itens: ComandaItem[];
 }

@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { ComandaItemService } from './comanda-item.service';
 import { CreateComandaItemDto } from './dto/create-comanda-item.dto';
 import { ListComandaItemDto } from './dto/list-comanda-item.dto';
@@ -11,17 +20,24 @@ export class ComandaItemController {
   constructor(private readonly comandaItemService: ComandaItemService) {}
 
   @Post()
-  async create(@Body() createComandaItemDto: CreateComandaItemDto): Promise<IComandaItemOutput> {
+  async create(
+    @Body() createComandaItemDto: CreateComandaItemDto,
+  ): Promise<IComandaItemOutput> {
     return await this.comandaItemService.create(createComandaItemDto);
   }
 
   @Get()
-  async findAll(@Query() listComandaItemDto: ListComandaItemDto): Promise<IComandaItemOutput[]> {
+  async findAll(
+    @Query() listComandaItemDto: ListComandaItemDto,
+  ): Promise<IComandaItemOutput[]> {
     return await this.comandaItemService.findAll(listComandaItemDto);
   }
 
   @Get(':id_comanda/:id_produto')
-  async findOne(@Param('id_comanda') id_comanda: number, @Param('id_produto') id_produto: number): Promise<IComandaItemOutput> {
+  async findOne(
+    @Param('id_comanda') id_comanda: number,
+    @Param('id_produto') id_produto: number,
+  ): Promise<IComandaItemOutput> {
     return await this.comandaItemService.findOne(id_comanda, id_produto);
   }
 
@@ -31,13 +47,25 @@ export class ComandaItemController {
   }
 
   @Get('status-pg/:id_comanda')
-  async findByComandaPaga(@Param('id_comanda') id_comanda: number, @Param('statusPg') statusPg: boolean): Promise<IComandaItemOutput[]> {
-    return await this.comandaItemService.findAll({ id_comanda, statusPg: true });
+  async findByComandaPaga(
+    @Param('id_comanda') id_comanda: number,
+    @Param('statusPg') statusPg: boolean,
+  ): Promise<IComandaItemOutput[]> {
+    return await this.comandaItemService.findAll({
+      id_comanda,
+      statusPg: true,
+    });
   }
 
   @Get('status-entrega/:id_comanda')
-  async findByComandaEntrega(@Param('id_comanda') id_comanda: number, @Param('statusEntrega') statusEntrega: boolean): Promise<IComandaItemOutput[]> {
-    return await this.comandaItemService.findAll({ id_comanda, statusEntrega: true });
+  async findByComandaEntrega(
+    @Param('id_comanda') id_comanda: number,
+    @Param('statusEntrega') statusEntrega: boolean,
+  ): Promise<IComandaItemOutput[]> {
+    return await this.comandaItemService.findAll({
+      id_comanda,
+      statusEntrega: true,
+    });
   }
 
   @Patch(':id_comanda/:id_produto')
@@ -46,11 +74,18 @@ export class ComandaItemController {
     @Param('id_produto') id_produto: number,
     @Body() updateComandaItemDto: UpdateComandaItemDto,
   ): Promise<IComandaItemOutput> {
-    return await this.comandaItemService.update(id_comanda, id_produto, updateComandaItemDto);
+    return await this.comandaItemService.update(
+      id_comanda,
+      id_produto,
+      updateComandaItemDto,
+    );
   }
 
   @Delete(':id_comanda/:id_produto')
-  async remove(@Param('id_comanda') id_comanda: number, @Param('id_produto') id_produto: number): Promise<DeleteComandaItemDto> {
+  async remove(
+    @Param('id_comanda') id_comanda: number,
+    @Param('id_produto') id_produto: number,
+  ): Promise<DeleteComandaItemDto> {
     return await this.comandaItemService.remove(id_comanda, id_produto);
   }
 }

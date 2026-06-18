@@ -13,9 +13,24 @@ describe('ProdutoController', () => {
           provide: ProdutoService,
           useValue: {
             // Defina aqui os métodos que o controller chama
-            findOne: jest.fn().mockResolvedValue({ id: 1, dsc_produto: 'Café', valor_unit: 5.0, status: true }),
-            create: jest.fn().mockResolvedValue({ id: 1, dsc_produto: 'Café', valor_unit: 5.0, status: true }),
-            update: jest.fn().mockResolvedValue({ id: 1, dsc_produto: 'Café Alterado', valor_unit: 5.0, status: true }),
+            findOne: jest.fn().mockResolvedValue({
+              id: 1,
+              dsc_produto: 'Café',
+              valor_unit: 5.0,
+              status: true,
+            }),
+            create: jest.fn().mockResolvedValue({
+              id: 1,
+              dsc_produto: 'Café',
+              valor_unit: 5.0,
+              status: true,
+            }),
+            update: jest.fn().mockResolvedValue({
+              id: 1,
+              dsc_produto: 'Café Alterado',
+              valor_unit: 5.0,
+              status: true,
+            }),
             remove: jest.fn().mockResolvedValue({ id: 1 }),
             findAll: jest.fn(),
           },
@@ -59,7 +74,12 @@ describe('ProdutoController', () => {
 
   describe('findOne', () => {
     it('should return a single produto', async () => {
-      const result = { id: 1, dsc_produto: 'Café', valor_unit: 5.0, status: true };
+      const result = {
+        id: 1,
+        dsc_produto: 'Café',
+        valor_unit: 5.0,
+        status: true,
+      };
 
       jest.spyOn(controller, 'findOne').mockImplementation(async () => result);
 
@@ -70,7 +90,12 @@ describe('ProdutoController', () => {
   describe('update', () => {
     it('should update a produto', async () => {
       const updateProdutoDto = { id: 1, dsc_produto: 'Café Alterado' };
-      const result = { id: 1, dsc_produto: 'Café Alterado', valor_unit: 5.0, status: true };
+      const result = {
+        id: 1,
+        dsc_produto: 'Café Alterado',
+        valor_unit: 5.0,
+        status: true,
+      };
 
       jest.spyOn(controller, 'update').mockImplementation(async () => result);
 

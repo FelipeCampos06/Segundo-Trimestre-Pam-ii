@@ -5,6 +5,8 @@ import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { ListUsuarioDto } from './dto/list-usuario.dto';
 import { DeleteUsuarioDto } from './dto/delete-usuario.dto';
+import { LoginUsuarioDto } from './dto/login-usuario.dto';
+
 
 @Controller('usuario')
 export class UsuarioController {
@@ -36,8 +38,8 @@ export class UsuarioController {
     }
 
     @Post('login')
-    async login(usuario: string, senha: string): Promise<IUsuarioOutput> {
-        return await this.usuarioService.login(usuario, senha);
+    async login(@Body() loginDto: LoginUsuarioDto): Promise<IUsuarioOutput> {
+        return await this.usuarioService.login(loginDto.usuario, loginDto.senha);
     }
 
     @Patch(':id')

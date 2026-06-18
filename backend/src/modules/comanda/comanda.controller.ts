@@ -9,17 +9,34 @@ import { Body, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 
 @Controller('comanda')
 export class ComandaController {
-    
   constructor(private readonly comandaService: ComandaService) {}
 
   @Post()
-  async create(@Body() createComandaDto: CreateComandaDto): Promise<IComandaOutput> {
+  async create(
+    @Body() createComandaDto: CreateComandaDto,
+  ): Promise<IComandaOutput> {
     return await this.comandaService.create(createComandaDto);
   }
 
+  @Post('usuario')
+  async createForUser(
+    @Body() body: { id_usuario: number; id_mesa: number; obs_comanda?: string },
+  ): Promise<IComandaOutput> {
+    return await this.comandaService.createForUser(body.id_usuario, body.id_mesa, body.obs_comanda);
+  }
+
   @Get()
-  async findAll(@Query() listComandaDto: ListComandaDto): Promise<IComandaOutput[]> {
+  async findAll(
+    @Query() listComandaDto: ListComandaDto,
+  ): Promise<IComandaOutput[]> {
     return await this.comandaService.findAll(listComandaDto);
+  }
+
+  @Get('usuario/:id_usuario')
+  async findOneByUsuarioId(
+    @Param('id_usuario') id_usuario: number,
+  ): Promise<IComandaOutput> {
+    return await this.comandaService.findOneByUsuarioId(id_usuario);
   }
 
   @Get(':id')
@@ -28,7 +45,9 @@ export class ComandaController {
   }
 
   @Get('mesa/:id_mesa')
-  async findOneByMesaId(@Param('id_mesa') id_mesa: number): Promise<IComandaOutput> {
+  async findOneByMesaId(
+    @Param('id_mesa') id_mesa: number,
+  ): Promise<IComandaOutput> {
     return await this.comandaService.findOneByMesaId(id_mesa);
   }
 
@@ -44,5 +63,4 @@ export class ComandaController {
   async remove(@Param('id') id: number): Promise<DeleteComandaDto> {
     return await this.comandaService.remove(id);
   }
-
 }

@@ -5,7 +5,8 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const algorithm = 'aes-256-ctr';
-const secretKey = process.env.ENCRYPTION_KEY || 'default_secret_key_32_characters'; // Use environment variables for security
+const secretKey =
+  process.env.ENCRYPTION_KEY || 'default_secret_key_32_characters'; // Use environment variables for security
 const iv = crypto.randomBytes(16); // Initialization vector
 
 export const encrypt = (text: string): string => {
@@ -19,7 +20,7 @@ export const decrypt = (hash: string): string => {
   const decipher = crypto.createDecipheriv(
     algorithm,
     secretKey,
-    Buffer.from(ivHex, 'hex')
+    Buffer.from(ivHex, 'hex'),
   );
   const decrypted = Buffer.concat([
     decipher.update(Buffer.from(encryptedText, 'hex')),

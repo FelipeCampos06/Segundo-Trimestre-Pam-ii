@@ -9,6 +9,8 @@ git config --global user.email "felipe.belinati@gmail.com"
 
 abra o cmd
 
+PAT [Removido por segurança]
+
 #   BACKEND  .env  #
 
 cd backend
@@ -38,6 +40,16 @@ depois iniciar o xamp no mysql
 
 abra o MySQL Worckbench
 
+CREATE SCHEMA quero_cafe_bar;
+
+SELECT `usuarios`.`id`,
+    `usuarios`.`nome`,
+    `usuarios`.`usuario`,
+    `usuarios`.`senha`,
+    `usuarios`.`perfil`
+    
+FROM `quero_cafe_bar`.`usuarios`;
+
 em seguida 
 
 cd backend
@@ -60,11 +72,25 @@ npm run dev
 
 http://localhost:5173
 
+
+Invoke-WebRequest -Uri 'http://localhost:3000/usuario' -Method Post -ContentType 'application/json' -Body '{"nome": "Usuario","usuario": "usuario","senha": "usuario"}'
+
+
 #   INSTALAR OPENCODE   #
 
  npm install -g opencode-ai
 
  opencode
+
+pegue a key da api
+
+ /connect
+
+ google
+
+cole a api key
+
+e de enter
 
 # ANDROID STUDIO #
 

@@ -9,6 +9,7 @@ import { ProdutoModule } from './modules/produto/produto.module';
 import { ComandaItemModule } from './modules/comanda-item/comanda-item.module';
 import { UsuarioModule } from './modules/usuario/usuario.module';
 import ormConfig from './config/orm.config';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import ormConfig from './config/orm.config';
     ProdutoModule,
     ComandaItemModule,
     UsuarioModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

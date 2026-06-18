@@ -7,7 +7,6 @@ describe('ComandaController', () => {
   let controller: ComandaController;
   let service: ComandaService;
 
-
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ComandaController],
@@ -16,10 +15,18 @@ describe('ComandaController', () => {
           provide: ComandaService,
           useValue: {
             // Defina aqui os métodos que o controller chama
-            findOne: jest.fn().mockResolvedValue({ id: 1, id_mesa: 1, ts_comanda: new Date() }),
-            findOneByMesaId: jest.fn().mockResolvedValue({ id: 1, id_mesa: 1, ts_comanda: new Date() }),
-            create: jest.fn().mockResolvedValue({ id: 1, id_mesa: 1, ts_comanda: new Date() }),
-            update: jest.fn().mockResolvedValue({ id: 1, id_mesa: 1, ts_comanda: new Date() }),
+            findOne: jest
+              .fn()
+              .mockResolvedValue({ id: 1, id_mesa: 1, ts_comanda: new Date() }),
+            findOneByMesaId: jest
+              .fn()
+              .mockResolvedValue({ id: 1, id_mesa: 1, ts_comanda: new Date() }),
+            create: jest
+              .fn()
+              .mockResolvedValue({ id: 1, id_mesa: 1, ts_comanda: new Date() }),
+            update: jest
+              .fn()
+              .mockResolvedValue({ id: 1, id_mesa: 1, ts_comanda: new Date() }),
             remove: jest.fn().mockResolvedValue({ id: 1 }),
             findAll: jest.fn(),
           },
@@ -70,7 +77,9 @@ describe('ComandaController', () => {
   describe('findOneByMesaId', () => {
     it('should return a comanda by mesa id', async () => {
       const result = { id: 1, id_mesa: 5, ts_comanda: new Date() };
-      jest.spyOn(service, 'findOneByMesaId').mockImplementation(async () => result);
+      jest
+        .spyOn(service, 'findOneByMesaId')
+        .mockImplementation(async () => result);
 
       expect(await controller.findOneByMesaId(5)).toBe(result);
       expect(service.findOneByMesaId).toHaveBeenCalledWith(5);
@@ -79,7 +88,7 @@ describe('ComandaController', () => {
 
   describe('update', () => {
     it('should update a comanda', async () => {
-      const updateDto = { id: 1, id_mesa: 1, obs_comanda: 'Teste'};
+      const updateDto = { id: 1, id_mesa: 1, obs_comanda: 'Teste' };
       const result = { ts_comanda: new Date(), ...updateDto };
       jest.spyOn(service, 'update').mockImplementation(async () => result);
 

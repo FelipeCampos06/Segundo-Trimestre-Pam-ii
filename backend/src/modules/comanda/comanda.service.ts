@@ -11,7 +11,6 @@ import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class ComandaService {
-    
   constructor(
     @InjectRepository(Comanda)
     private readonly comandaRepository: Repository<Comanda>,
@@ -22,6 +21,15 @@ export class ComandaService {
     return await this.comandaRepository.save(comanda);
   }
 
+  async createForUser(id_usuario: number, id_mesa: number, obs_comanda?: string): Promise<IComandaOutput> {
+    const comanda = this.comandaRepository.create({
+      id_usuario,
+      id_mesa,
+      obs_comanda,
+    });
+    return await this.comandaRepository.save(comanda);
+  }
+
   async findAll(listComandaDto: ListComandaDto): Promise<IComandaOutput[]> {
     return await this.comandaRepository.find({
       where: listComandaDto,
@@ -29,7 +37,10 @@ export class ComandaService {
   }
 
   async findOne(id: number): Promise<IComandaOutput> {
-    const comanda = await this.comandaRepository.findOne({ where: { id } });
+    const comanda = await this.comandaRepository.findOne({ 
+        where: { id },
+        relations: ['itens', 'itens.produto'] 
+    });
     if (!comanda) {
       throw new NotFoundException(`Comanda com ID ${id} não encontrada`);
     }
@@ -37,14 +48,33 @@ export class ComandaService {
   }
 
   async findOneByMesaId(id_mesa: number): Promise<IComandaOutput> {
-    const comanda = await this.comandaRepository.findOne({ where: { id_mesa } });
+    const comanda = await this.comandaRepository.findOne({
+      where: { id_mesa },
+    });
     if (!comanda) {
-      throw new NotFoundException(`Comanda da Mesa com ID ${id_mesa} não encontrada`);
+      throw new NotFoundException(
+        `Comanda da Mesa com ID ${id_mesa} não encontrada`,
+      );
     }
     return comanda;
   }
 
-  async update(id: number, updateComandaDto: UpdateComandaDto): Promise<IComandaOutput> {
+  async findOneByUsuarioId(id_usuario: number): Promise<IComandaOutput> {
+    const comanda = await this.comandaRepository.findOne({
+      where: { id_usuario },
+    });
+    if (!comanda) {
+      throw new NotFoundException(
+        `Comanda do Usuário com ID ${id_usuario} não encontrada`,
+      );
+    }
+    return comanda;
+  }
+
+  async update(
+    id: number,
+    updateComandaDto: UpdateComandaDto,
+  ): Promise<IComandaOutput> {
     const comanda = await this.findOne(id);
     const updatedComanda = Object.assign(comanda, updateComandaDto);
     return await this.comandaRepository.save(updatedComanda);
@@ -55,5 +85,4 @@ export class ComandaService {
     await this.comandaRepository.delete(id);
     return { id };
   }
-
 }
